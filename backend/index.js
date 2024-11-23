@@ -20,14 +20,14 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: ["https://udmnmnc-fe.vercel.app"], // Explicitly allow your frontend
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    origin: ["https://udmnmnc-fe.vercel.app", "http://localhost:5173"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true, // Required for `withCredentials`
+    credentials: true,
   })
 );
 
-
+  
 
 
 // api's
