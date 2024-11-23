@@ -28,6 +28,10 @@ const Login = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        if (!input.email || !input.password || !input.role) {
+            toast.error("All fields are required.");
+            return;
+        }
         try {
             dispatch(setLoading(true));
             const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
@@ -42,12 +46,17 @@ const Login = () => {
                 toast.success(res.data.message);
             }
         } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
+            console.error(error);
+            if (error.response && error.response.data) {
+                toast.error(error.response.data.message);
+            } else {
+                toast.error("An unexpected error occurred.");
+            }
         } finally {
             dispatch(setLoading(false));
         }
     }
+    
     useEffect(()=>{
         if(user){
             navigate("/");
