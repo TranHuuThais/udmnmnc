@@ -34,13 +34,19 @@ const Login = () => {
     }
     try {
       dispatch(setLoading(true));
-      const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
-      console.log(res); // Log the response to inspect its structure
+      try {
+        const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+        });
+        console.log(res.data);
+    } catch (error) {
+        console.error(error);
+        if (error.response) {
+            console.log("Error Response:", error.response.data);
+        }
+    }
+    
 
       if (res.data.success) {
         dispatch(setUser(res.data.user));
