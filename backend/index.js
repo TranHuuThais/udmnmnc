@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: ["https://udmnmnc-fe.vercel.app", "http://localhost:5173","http://localhost:8000"],
+    origin: ["https://udmnmnc-fe.vercel.app"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
